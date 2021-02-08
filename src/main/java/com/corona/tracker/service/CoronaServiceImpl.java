@@ -11,10 +11,13 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -50,11 +53,17 @@ public class CoronaServiceImpl implements CoronaService {
             String jsonString = mapper.writeValueAsString(response.getBody());
 
             Corona corona = new Corona();
-            corona.setActive(JsonPath.read(jsonString, "$.active"));
-            corona.setRecovered(JsonPath.read(jsonString, "$.recovered"));
-            corona.setCases(JsonPath.read(jsonString, "$.cases"));
+            corona.setNumOfActiveCases(JsonPath.read(jsonString, "$.active"));
+            corona.setTotalNumOfRecovered(JsonPath.read(jsonString, "$.recovered"));
+            corona.setTotalNumOfCases(JsonPath.read(jsonString, "$.cases"));
             corona.setCountry(JsonPath.read(jsonString, "$.country"));
 
+            Timestamp ts=new Timestamp(JsonPath.read(jsonString, "$.updated"));
+            Date date=new Date(ts.getTime());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            System.out.println(date);
+            corona.setLastUpdate(String.valueOf(date));
+            log.info(String.valueOf(date));
             log.info(corona.toString());
             coronaRepository.save(corona);
         }

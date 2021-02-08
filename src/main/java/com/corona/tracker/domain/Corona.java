@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -23,8 +24,14 @@ public class Corona {
     Long id;
 
     String country;
-    int active;
-    int recovered;
-    int cases;
-    LocalDateTime lastUpdate;
+    int numOfActiveCases;
+    int numOfNewCases;
+    int numOfCriticalCases;
+    int numOfNewDeaths;
+    int numOfNewlyRecovered;
+    int totalNumOfRecovered;
+    int totalNumOfDeaths;
+    int totalNumOfCases;
+    int totalNumOfTested;
+    String lastUpdate;
 }
