@@ -2,8 +2,9 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Corona Tracker</title>
-
+    <title>Corona Tracker Application</title>
+    <link rel="shortcut icon" type="image/ico" href="corona.png" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 
@@ -19,11 +20,13 @@
     <table id="corona-table" class="striped">
         <thead>
         <tr>
-            <th>Place</th>
+            <th>Country</th>
             <th>Confirmed</th>
-            <th>Confirmed changes</th>
             <th>Active</th>
             <th>Active changes</th>
+            <th>Critical</th>
+            <th>Deaths</th>
+            <th>Death changes</th>
             <th>Recovered</th>
             <th>Recovered changes</th>
         </tr>
@@ -32,28 +35,31 @@
         <tr th:each="corona : ${coronaData}">
             <td><p th:text="${corona.country}"></p></td>
             <td th:text="${corona.totalNumOfCases}"></td>
-
+            <td th:text="${corona.numOfActiveCases}"></td>
             <td>
                 <span th:if="${corona.numOfNewCases > 0 }" th:text="${'+' + corona.numOfNewCases}"
-                      class="badge red white-text"></span>
+                      class="badge yellow black-text"></span>
                 <span th:if="${corona.numOfNewCases == 0 }" th:text="${corona.numOfNewCases}"
                       class="badge grey black-text"></span>
                 <span th:if="${corona.numOfNewCases < 0 }" th:text="${corona.numOfNewCases}"
                       class="badge teal white-text"></span>
             </td>
-            <td th:text="${corona.numOfActiveCases}"></td>
             <td>
-                <span th:if="${corona.numOfCriticalCases > 0 }" th:text="${'+' + corona.numOfCriticalCases}"
+                <span th:text="${corona.numOfCriticalCases}" class="badge orange black-text"></span>
+            </td>
+            <td><span th:text="${corona.totalNumOfDeaths}" class="badge black white-text"></span></td>
+            <td>
+                <span th:if="${corona.numOfNewDeaths > 0 }" th:text="${'+' + corona.numOfNewDeaths}"
                       class="badge red white-text"></span>
-                <span th:if="${corona.numOfCriticalCases == 0 }" th:text="${corona.numOfCriticalCases}"
+                <span th:if="${corona.numOfNewDeaths == 0 }" th:text="${corona.numOfNewDeaths}"
                       class="badge grey black-text"></span>
-                <span th:if="${corona.numOfCriticalCases < 0 }" th:text="${corona.numOfCriticalCases}"
+                <span th:if="${corona.numOfNewDeaths < 0 }" th:text="${corona.numOfNewDeaths}"
                       class="badge teal white-text"></span>
             </td>
             <td th:text="${corona.totalNumOfRecovered}"></td>
             <td>
                 <span th:if="${corona.numOfNewlyRecovered > 0 }" th:text="${'+' + corona.numOfNewlyRecovered}"
-                      class="badge red white-text"></span>
+                      class="badge green white-text"></span>
                 <span th:if="${corona.numOfNewlyRecovered == 0 }" th:text="${corona.numOfNewlyRecovered}"
                       class="badge grey black-text"></span>
                 <span th:if="${corona.numOfNewlyRecovered < 0 }" th:text="${corona.numOfNewlyRecovered}"

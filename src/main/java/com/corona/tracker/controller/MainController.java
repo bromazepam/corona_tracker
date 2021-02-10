@@ -20,8 +20,12 @@ public class MainController {
 
     @GetMapping("/")
     public String root2(Model model) {
-        List<Corona> allStats = coronaService.getAllStats();
+        List<Corona> allStats = coronaService.getCountryCoronaStats();
+        int totalReportedCases = allStats.stream().mapToInt(Corona::getTotalNumOfCases).sum();
+        int totalNewCases = allStats.stream().mapToInt(Corona::getNumOfNewCases).sum();
         model.addAttribute("coronaData", allStats);
+        model.addAttribute("totalReportedCases", totalReportedCases);
+        model.addAttribute("totalNewCases", totalNewCases);
         return "mainTemplate";
     }
 }
