@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Coronavirus Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+    <h1>Coronavirus Tracker Application</h1>
+    <p>This application lists the current number of cases reported across the globe</p>
+
+    <div class="jumbotron">
+        <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+        <p class="lead">Total cases reported as of today</p>
+        <hr class="my-4">
+        <p>
+            <span>New cases reported since previous day:</span>
+            <span th:text="${totalNewCases}"></span>
+        </p>
+
+    </div>
+
+    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <tr>
+            <th>Country</th>
+            <th>Confirmed</th>
+            <th>Active</th>
+            <th>Active changes</th>
+            <th>Critical</th>
+            <th>Deaths</th>
+            <th>Death changes</th>
+            <th>Recovered</th>
+            <th>Recovered changes</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="corona : ${coronaData}">
+            <td><p th:text="${corona.country}"></p></td>
+            <td th:text="${corona.totalNumOfCases}"></td>
+            <td th:text="${corona.numOfActiveCases}"></td>
+            <td>
+                <span th:if="${corona.numOfNewCases > 0 }" th:text="${'+' + corona.numOfNewCases}"
+                      class="badge badge-warning"></span>
+                <span th:if="${corona.numOfNewCases == 0 }" th:text="${corona.numOfNewCases}"
+                      class="badge grey black-text"></span>
+                <span th:if="${corona.numOfNewCases < 0 }" th:text="${corona.numOfNewCases}"
+                      class="badge teal white-text"></span>
+            </td>
+            <td>
+                <span th:text="${corona.numOfCriticalCases}" class="badge badge-secondary"></span>
+            </td>
+            <td><span th:text="${corona.totalNumOfDeaths}" class="badge badge-dark"></span></td>
+            <td>
+                <span th:if="${corona.numOfNewDeaths > 0 }" th:text="${'+' + corona.numOfNewDeaths}"
+                      class="badge badge-danger"></span>
+                <span th:if="${corona.numOfNewDeaths == 0 }" th:text="${corona.numOfNewDeaths}"
+                      class="badge grey black-text"></span>
+                <span th:if="${corona.numOfNewDeaths < 0 }" th:text="${corona.numOfNewDeaths}"
+                      class="badge teal white-text"></span>
+            </td>
+            <td th:text="${corona.totalNumOfRecovered}"></td>
+            <td>
+                <span th:if="${corona.numOfNewlyRecovered > 0 }" th:text="${'+' + corona.numOfNewlyRecovered}"
+                      class="badge badge-success"></span>
+                <span th:if="${corona.numOfNewlyRecovered == 0 }" th:text="${corona.numOfNewlyRecovered}"
+                      class="badge grey black-text"></span>
+                <span th:if="${corona.numOfNewlyRecovered < 0 }" th:text="${corona.numOfNewlyRecovered}"
+                      class="badge teal white-text"></span>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>
+</body>
+
+</html>
