@@ -14,5 +14,7 @@ public interface CoronaService {
 
     List<Corona> findByLastUpdate(LocalDate minusDays);
 
+    List<Corona> getAllStats();
+
     List<Corona> findAll();
 }
