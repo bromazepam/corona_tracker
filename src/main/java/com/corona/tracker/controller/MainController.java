@@ -26,6 +26,6 @@ public class MainController {
         model.addAttribute("coronaData", allStats);
         model.addAttribute("totalReportedCases", totalReportedCases);
         model.addAttribute("totalNewCases", totalNewCases);
-        return "mainTemplate";
+        return "mainTemplateV2";
     }
 }
