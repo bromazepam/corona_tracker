@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <title>Corona Tracker Application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -18,7 +16,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
             integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous"></script>
-
     <script
             src="http://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -26,13 +23,11 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 </head>
-
 <body>
 <div class="container">
     <h1>Coronavirus Tracker Application</h1>
-<!--    <p>This application lists the current number of cases reported across the globe</p>-->
+    <!--    <p>This application lists the current number of cases reported across the europe</p>-->
     <p>This application lists the current number of cases reported in Europe</p>
-
     <div class="jumbotron">
         <h1 class="display-4" th:text="${totalReportedCases}"></h1>
         <p class="lead">Total cases reported as of today</p>
@@ -41,7 +36,6 @@
             <span>New cases reported since previous day:</span>
             <span th:text="${totalNewCases}"></span>
         </p>
-
     </div>
 
     <table id="coronaStats" class="table">
@@ -92,7 +86,6 @@
                 <span th:if="${corona.numOfNewlyRecovered < 0 }" th:text="${corona.numOfNewlyRecovered}"
                       class="badge teal white-text"></span>
             </td>
-
         </tr>
         </tbody>
     </table>
@@ -103,5 +96,4 @@
     });
 </script>
 </body>
-
 </html>

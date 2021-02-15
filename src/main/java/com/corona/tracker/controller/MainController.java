@@ -19,7 +19,7 @@ public class MainController {
     private final CoronaServiceImpl coronaService;
 
     @GetMapping("/")
-    public String root2(Model model) {
+    public String root(Model model) {
         List<Corona> allStats = coronaService.getCountryCoronaStats();
         int totalReportedCases = allStats.stream().mapToInt(Corona::getTotalNumOfCases).sum();
         int totalNewCases = allStats.stream().mapToInt(Corona::getNumOfNewCases).sum();
