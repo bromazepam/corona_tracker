@@ -2,7 +2,7 @@
 
 Minimal [Spring Boot](http://projects.spring.io/spring-boot/) corona tracker app for Europe.
 
-##Application screenshots
+## Application screenshots
 
 ![Screenshot](./src/main/resources/static/Screenshot.png)
 ## Requirements
