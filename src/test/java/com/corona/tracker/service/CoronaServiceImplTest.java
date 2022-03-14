@@ -19,10 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 
-/**
- * created using diffblue plugin
- */
-
 @ContextConfiguration(classes = {CoronaServiceImpl.class})
 @ExtendWith(SpringExtension.class)
 public class CoronaServiceImplTest {
